@@ -1,0 +1,8 @@
+flask
+mysql-connector-python
+# Optional alternative (requires compiling mysqlclient on Windows):
+# mysqlclient
+# Optional pure-Python alternative (works with PyMySQL):
+# PyMySQL
+# Optional Flask extension that wraps mysqlclient:
+# flask-mysqldb
