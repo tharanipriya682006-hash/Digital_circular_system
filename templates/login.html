@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT IMAGE -->
+    <div class="left">
+        <img src="{{ url_for('static', filename='campus.jpg') }}">
+    </div>
+
+    <!-- RIGHT LOGIN FORM -->
+    <div class="right">
+
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+
+        <h3>Please Select Your Role</h3>
+
+        <form method="POST" action="/login">
+
+            <select name="role">
+                <option value="admin">Admin</option>
+                <option value="staff">Staff</option>
+                <option value="student">Student</option>
+            </select>
+
+            <input type="text" name="username" placeholder="Enter username" required>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <div class="forgot">Forgot Password?</div>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <div class="footer">
+            Developed & Maintained by Office of IT, SAI
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
