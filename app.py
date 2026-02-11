@@ -11,9 +11,9 @@ def get_db():
     if 'db' not in g:
         g.db = mysql.connect(
             host=current_app.config.get('DB_HOST', 'localhost'),
-            user=current_app.config.get('DB_USER', 'youruser'),
-            password=current_app.config.get('DB_PASSWORD', 'yourpass'),
-            database=current_app.config.get('DB_NAME', 'yourdb')
+            user=current_app.config.get('DB_USER', 'root'),
+            password=current_app.config.get('DB_PASSWORD', 'tharanipriya'),
+            database=current_app.config.get('DB_NAME', 'hackathon')
         )
     return g.db
 
@@ -32,5 +32,34 @@ def init_app(app):
     configuring `app.config['DB_HOST']`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`.
     """
     app.teardown_appcontext(close_db)
+
+
+if __name__ == '__main__':
+    print('app.py self-check')
+    if mysql is None:
+        print('mysql-connector-python not installed. Install with: python -m pip install mysql-connector-python')
+    else:
+        try:
+            print('mysql-connector-python available, version:', mysql.__version__)
+        except Exception:
+            print('mysql-connector-python available')
+
+    try:
+        from flask import Flask
+        app = Flask(__name__)
+        app.config.update({'DB_HOST':'localhost','DB_USER':'youruser','DB_PASSWORD':'yourpass','DB_NAME':'yourdb'})
+        init_app(app)
+        with app.app_context():
+            try:
+                db = get_db()
+                print('get_db() returned:', type(db))
+                try:
+                    db.close()
+                except Exception:
+                    pass
+            except Exception as e:
+                print('DB connection test failed:', e)
+    except Exception as e:
+        print('Flask not available or test app failed:', e)
 
 
